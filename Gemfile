@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.5'
+ruby '2.7.7'
 
 gem 'rails',                      '6.1.4.6'
 gem 'image_processing',           '1.9.3'
@@ -20,7 +20,7 @@ gem 'jbuilder',                   '2.10.0'
 gem 'bootsnap',                   '1.7.2', require: false
 
 group :development, :test do
-  gem 'sqlite3', '1.4.2'
+  gem 'mysql2'
   gem 'byebug',  '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
 end
 
