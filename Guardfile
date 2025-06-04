@@ -2,16 +2,16 @@
 # For the 7th edition, see here:
 # https://github.com/learnenough/rails_tutorial_sample_app_7th_ed/blob/main/Guardfile
 
-require 'active_support/core_ext/string'
+require "active_support/core_ext/string"
 # Defines the matching rules for Guard.
 guard :minitest, spring: "bin/rails test", all_on_start: false do
   watch(%r{^test/(.*)/?(.*)_test\.rb$})
-  watch('test/test_helper.rb') { 'test' }
-  watch('config/routes.rb') { interface_tests }
+  watch("test/test_helper.rb") { "test" }
+  watch("config/routes.rb") { interface_tests }
   watch(%r{app/views/layouts/*}) { interface_tests }
   watch(%r{^app/models/(.*?)\.rb$}) do |matches|
     ["test/models/#{matches[1]}_test.rb",
-     "test/integration/microposts_interface_test.rb"]
+      "test/integration/microposts_interface_test.rb"]
   end
   watch(%r{^test/fixtures/(.*?)\.yml$}) do |matches|
     "test/models/#{matches[1].singularize}_test.rb"
@@ -27,27 +27,27 @@ guard :minitest, spring: "bin/rails test", all_on_start: false do
   end
   watch(%r{^app/views/([^/]*?)/.*\.html\.erb$}) do |matches|
     ["test/controllers/#{matches[1]}_controller_test.rb"] +
-    integration_tests(matches[1])
+      integration_tests(matches[1])
   end
   watch(%r{^app/helpers/(.*?)_helper\.rb$}) do |matches|
     integration_tests(matches[1])
   end
-  watch('app/views/layouts/application.html.erb') do
-    'test/integration/site_layout_test.rb'
+  watch("app/views/layouts/application.html.erb") do
+    "test/integration/site_layout_test.rb"
   end
-  watch('app/helpers/sessions_helper.rb') do
-    integration_tests << 'test/helpers/sessions_helper_test.rb'
+  watch("app/helpers/sessions_helper.rb") do
+    integration_tests << "test/helpers/sessions_helper_test.rb"
   end
-  watch('app/controllers/sessions_controller.rb') do
-    ['test/controllers/sessions_controller_test.rb',
-     'test/integration/users_login_test.rb']
+  watch("app/controllers/sessions_controller.rb") do
+    ["test/controllers/sessions_controller_test.rb",
+      "test/integration/users_login_test.rb"]
   end
-  watch('app/controllers/account_activations_controller.rb') do
-    'test/integration/users_signup_test.rb'
+  watch("app/controllers/account_activations_controller.rb") do
+    "test/integration/users_signup_test.rb"
   end
   watch(%r{app/views/users/*}) do
-    resource_tests('users') +
-    ['test/integration/microposts_interface_test.rb']
+    resource_tests("users") +
+      ["test/integration/microposts_interface_test.rb"]
   end
 end
 
