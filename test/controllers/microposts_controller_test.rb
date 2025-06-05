@@ -2,7 +2,10 @@ require "test_helper"
 
 class MicropostsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @micropost = microposts(:orange)
+    @user = FactoryBot.create(:user)
+    @other_user = FactoryBot.create(:user)
+    @micropost = FactoryBot.create(:micropost, user_id: @user.id)
+    @other_micropost = FactoryBot.create(:micropost, user_id: @other_user.id)
   end
 
   test "should redirect create when not logged in" do
@@ -20,10 +23,9 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should redirect destroy for wrong micropost" do
-    log_in_as(users(:michael))
-    micropost = microposts(:ants)
+    log_in_as(@user)
     assert_no_difference "Micropost.count" do
-      delete micropost_path(micropost)
+      delete micropost_path(@other_micropost)
     end
     assert_redirected_to root_url
   end

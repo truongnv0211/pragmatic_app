@@ -4,7 +4,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
   include ApplicationHelper
 
   def setup
-    @user = users(:michael)
+    @user = FactoryBot.create(:user, :has_microposts, total_post: 35)
   end
 
   test "profile display" do
