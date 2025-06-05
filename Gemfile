@@ -23,6 +23,8 @@ group :development, :test do
   gem "mysql2"
   gem "byebug", "11.1.3", platforms: [:mri, :mingw, :x64_mingw]
   gem "standard"
+  gem "factory_bot_rails"
+  gem "pry-rails"
 end
 
 group :development do

@@ -2,7 +2,8 @@ require "test_helper"
 
 class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:michael)
+    @user = FactoryBot.create(:user, :has_microposts, total_post: 35)
+    @other_user = FactoryBot.create(:user, :has_microposts, total_post: 2)
   end
 
   test "micropost interface" do
@@ -31,7 +32,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
       delete micropost_path(first_micropost)
     end
     # Visit a different user (no delete links).
-    get user_path(users(:archer))
+    get user_path(@other_user)
     assert_select "a", {text: "delete", count: 0}
   end
 end

@@ -2,8 +2,11 @@ require "test_helper"
 
 class FollowingTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:michael)
-    @other = users(:archer)
+    @user = FactoryBot.create(:user)
+    @other = FactoryBot.create(:user)
+    @other_2 = FactoryBot.create(:user)
+    FactoryBot.create(:relationship, followed_id: @other_2.id, follower_id: @user.id)
+    FactoryBot.create(:relationship, followed_id: @user.id, follower_id: @other_2.id)
     log_in_as(@user)
   end
 

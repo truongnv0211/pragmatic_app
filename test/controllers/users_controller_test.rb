@@ -2,8 +2,8 @@ require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:michael)
-    @other_user = users(:archer)
+    @user = FactoryBot.create(:user)
+    @other_user = FactoryBot.create(:user, :non_admin)
   end
 
   test "should get new" do

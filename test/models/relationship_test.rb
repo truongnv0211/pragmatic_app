@@ -2,8 +2,10 @@ require "test_helper"
 
 class RelationshipTest < ActiveSupport::TestCase
   def setup
-    @relationship = Relationship.new(follower_id: users(:michael).id,
-      followed_id: users(:archer).id)
+    @user = FactoryBot.create(:user)
+    @other_user = FactoryBot.create(:user)
+    @relationship = Relationship.new(follower_id: @user.id,
+      followed_id: @other_user.id)
   end
 
   test "should be valid" do
