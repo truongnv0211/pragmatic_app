@@ -25,6 +25,7 @@ group :development, :test do
   gem "standard"
   gem "factory_bot_rails"
   gem "pry-rails"
+  gem "brakeman", "~> 5.4"
 end
 
 group :development do
