@@ -4,7 +4,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   def setup
     @admin = FactoryBot.create(:user)
     @non_admin = FactoryBot.create(:user, :non_admin)
-    30.times{|_| FactoryBot.create(:user)}
+    30.times { |_| FactoryBot.create(:user) }
   end
 
   test "index as admin including pagination and delete links" do

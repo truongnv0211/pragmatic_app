@@ -1,0 +1,85 @@
+# This workflow uses actions that are not certified by GitHub.  They are
+# provided by a third-party and are governed by separate terms of service,
+# privacy policy, and support documentation.
+#
+# This workflow will install a prebuilt Ruby version, install dependencies, and
+# run tests and linters.
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  # test:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     NODE_OPTIONS: "--openssl-legacy-provider"
+  #   services:
+  #     mysql:
+  #       image: mysql:8.0.42
+  #       ports:
+  #         - 3306:3306
+  #       env:
+  #         MYSQL_DATABASE: app_test_db
+  #         MYSQL_HOST: 127.0.0.1
+  #         MYSQL_ALLOW_EMPTY_PASSWORD: yes
+  #       options: >-
+  #         --health-cmd "mysqladmin ping"
+  #         --health-interval 10s
+  #         --health-timeout 5s
+  #         --health-retries 5
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #     # Add or replace dependency steps here
+  #     - name: Install Ruby and gems
+  #       uses: ruby/setup-ruby@78c01b705fd9d5ad960d432d3a0cfa341d50e410 # v1.179.1
+  #       with:
+  #         bundler-cache: true
+  #     - name: Set node version
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: "18.12.1"
+  #     - name: Run install
+  #       uses: borales/actions-yarn@v4
+  #       with:
+  #         cmd: install
+  #     - name: Set up database.yml
+  #       run: cp config/database-ci.yml config/database.yml
+  #     - name: Create database test
+  #       env:
+  #         RAILS_ENV: test
+  #       run: bin/rails db:create
+  #     - name: Set up database schema
+  #       env:
+  #         RAILS_ENV: test
+  #       run: bin/rails db:schema:load
+  #     - name: Precomplie for webpack manifest
+  #       env:
+  #         RAILS_ENV: test
+  #       run: bin/rails webpacker:compile
+  #     # Add or replace test runners here
+  #     - name: Run tests
+  #       env:
+  #         RAILS_ENV: test
+  #       run: bin/rails test
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@78c01b705fd9d5ad960d432d3a0cfa341d50e410 # v1.179.1
+        with:
+          bundler-cache: true
+      - name: Generate binstubs
+        run: bundle binstubs rubocop
+      # Add or replace any other lints here
+      # - name: Security audit dependencies
+      #   run: bin/bundler-audit --update --ignore CVE-2024-6484
+      # - name: Security audit application code
+      #   run: bin/brakeman -q -w2
+      - name: Lint Ruby files
+        run: bin/rake standard

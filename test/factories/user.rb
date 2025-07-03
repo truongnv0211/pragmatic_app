@@ -1,20 +1,20 @@
 FactoryBot.define do
   factory :user do
-    name{Faker::Name.name}
-    email{Faker::Internet.email}
-    password_digest{User.digest("password")}
-    admin{true}
-    activated{true}
-    activated_at{Time.zone.now}
+    name { Faker::Name.name }
+    email { Faker::Internet.email }
+    password_digest { User.digest("password") }
+    admin { true }
+    activated { true }
+    activated_at { Time.zone.now }
   end
 
   trait :non_admin do
-    admin{false}
+    admin { false }
   end
 
   trait :has_microposts do
     transient do
-      total_post{1}
+      total_post { 1 }
     end
 
     after(:create) do |user, evaluator|
