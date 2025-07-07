@@ -24,7 +24,7 @@ RSpec.describe "MicropostInterface", type: :feature do
 
   it "accepts valid submission with image" do
     content = "This micropost really ties the room together"
-    image_path = Rails.root.join("test", "fixtures", "files", "kitten.jpg")
+    image_path = Rails.root.join("spec", "fixtures", "files", "kitten.jpg")
 
     expect {
       fill_in "micropost_content", with: content
