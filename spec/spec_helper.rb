@@ -14,8 +14,8 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require "./spec/supports/session_helpers.rb"
-require "./spec/supports/user_helpers.rb"
+require "./spec/supports/session_helpers"
+require "./spec/supports/user_helpers"
 
 RSpec.configure do |config|
   config.include SessionHelpers

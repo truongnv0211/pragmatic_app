@@ -31,7 +31,7 @@ RSpec.describe User, type: :model do
     end
 
     it "rejects too long email" do
-      subject.email = "#{'a' * 244}@example.com"
+      subject.email = "#{"a" * 244}@example.com"
       expect(subject).not_to be_valid
     end
 

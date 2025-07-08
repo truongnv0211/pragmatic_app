@@ -5,7 +5,7 @@ RSpec.describe MicropostsController, type: :controller do
   let(:other_user) { FactoryBot.create(:user) }
   let(:micropost) { FactoryBot.create(:micropost, user: user) }
   let(:other_micropost) { FactoryBot.create(:micropost, user: other_user) }
-  let(:total_micropost) {Micropost.count}
+  let(:total_micropost) { Micropost.count }
 
   describe "POST /microposts" do
     context "when not logged in" do

@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "UsersIndex", type: :feature do
   let!(:admin) { FactoryBot.create(:user) }
   let!(:non_admin) { FactoryBot.create(:user, :non_admin) }
-  let!(:users){FactoryBot.create_list(:user, 30)}
+  let!(:users) { FactoryBot.create_list(:user, 30) }
 
   context "when logged in as admin" do
     before do

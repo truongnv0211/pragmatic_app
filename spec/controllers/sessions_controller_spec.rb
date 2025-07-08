@@ -12,7 +12,7 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe "POST /create" do
-    let(:user){FactoryBot.create(:user)}
+    let(:user) { FactoryBot.create(:user) }
     context "when remembering" do
       before do
         post :create, params: {

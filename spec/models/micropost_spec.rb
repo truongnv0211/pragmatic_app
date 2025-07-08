@@ -28,7 +28,7 @@ RSpec.describe Micropost, type: :model do
 
   describe "ordering" do
     it "returns most recent microposts first" do
-      older = FactoryBot.create(:micropost, user: user, created_at: 1.day.ago)
+      _ = FactoryBot.create(:micropost, user: user, created_at: 1.day.ago)
       newer = FactoryBot.create(:micropost, user: user, created_at: 1.hour.ago)
       expect(Micropost.first).to eq(newer)
     end

@@ -26,7 +26,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe "GET /users/:id/edit" do
     context "when not logged in" do
-       before do
+      before do
         get :edit, params: {id: user.id}
       end
 
@@ -112,8 +112,8 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "when update with valid data" do
-      let(:new_name){Faker::Name.name}
-      let(:new_email){Faker::Internet.email}
+      let(:new_name) { Faker::Name.name }
+      let(:new_email) { Faker::Internet.email }
       before do
         sign_in(user)
         patch :update, params: {
@@ -135,7 +135,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "DELETE /users/:id" do
-    let(:total_user){User.count}
+    let(:total_user) { User.count }
     context "when not logged in" do
       before do
         delete :destroy, params: {id: user.id}

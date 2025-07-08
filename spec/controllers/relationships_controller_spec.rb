@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe RelationshipsController, type: :controller do
-  let(:total_relation) {Relationship.count}
+  let(:total_relation) { Relationship.count }
 
   describe "POST /relationships" do
     context "when not logged in" do
