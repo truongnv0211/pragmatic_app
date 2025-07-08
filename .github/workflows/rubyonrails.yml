@@ -63,7 +63,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-        run: bin/rails test
+        run: bundle exec rspec
 
   lint:
     runs-on: ubuntu-latest
