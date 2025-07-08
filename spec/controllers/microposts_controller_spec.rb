@@ -42,5 +42,18 @@ RSpec.describe MicropostsController, type: :controller do
         expect(response).to redirect_to(root_url)
       end
     end
+
+    context "when logged in and wrong referer" do
+      before do
+        sign_in(user)
+        request.env["HTTP_referer"] = nil
+        delete :destroy, params: {id: micropost.id}
+      end
+
+      it "does not delete the other user's micropost and redirects to root" do
+        expect(Micropost.count).to eq(total_micropost)
+        expect(response).to redirect_to(root_url)
+      end
+    end
   end
 end
