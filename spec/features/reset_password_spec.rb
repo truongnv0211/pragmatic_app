@@ -39,6 +39,13 @@ RSpec.describe "Password resets", type: :feature do
     expect(page).to have_current_path(root_path)
     reset_user.update!(activated: true)
 
+    # Token exprired
+    reset_sent_at = reset_user.reset_sent_at
+    reset_user.update!(reset_sent_at: Time.zone.now - 3.hour)
+    visit edit_password_reset_path(token, email: reset_user.email)
+    expect(page).to have_current_path(new_password_reset_url)
+    reset_user.update!(reset_sent_at: reset_sent_at)
+
     # Invalid token
     visit edit_password_reset_path("wrong-token", email: reset_user.email)
     expect(page).to have_current_path(root_path)
