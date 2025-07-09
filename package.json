@@ -11,6 +11,8 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "cypress": "^14.5.1",
+    "cypress-on-rails": "^0.1.0",
     "esbuild": "^0.25.5"
   },
   "scripts": {

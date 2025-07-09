@@ -28,6 +28,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "pry-rails"
   gem "brakeman", "~> 7.0.2"
+  gem "cypress-on-rails", "~> 1.17"
 end
 
 group :development do
@@ -46,6 +47,7 @@ group :test do
   gem "guard", "~> 2.19.1"
   gem "guard-minitest", "~> 2.4.6"
   gem "simplecov", "~> 0.22.0", require: false
+  gem "database_cleaner-active_record", "~> 2.2"
 end
 
 group :production do
