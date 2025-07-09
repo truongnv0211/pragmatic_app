@@ -60,10 +60,19 @@ jobs:
           RAILS_ENV: test
         run: bin/rails assets:precompile
       # Add or replace test runners here
-      - name: Run tests
+      - name: Run Rails tests
         env:
           RAILS_ENV: test
         run: bundle exec rspec
+      - name: Start server in the background
+        env:
+          CYPRESS: 1
+        run: |
+          bundle exec rails server -p 5017 &
+          sleep 5 &&
+          curl http://localhost:5017 -I
+      - name: Run cypress test
+        run: yarn run cypress run --project ./e2e
 
   lint:
     runs-on: ubuntu-latest
